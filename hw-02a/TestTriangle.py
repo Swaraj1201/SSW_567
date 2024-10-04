@@ -8,25 +8,27 @@ The primary goal of this file is to demonstrate a simple unittest implementation
 """
 
 import unittest
-
 from Triangle import classifyTriangle
 
-# This code implements the unit test functionality
-# https://docs.python.org/3/library/unittest.html has a nice description of the framework
+class TestTriangle(unittest.TestCase):
 
-class TestTriangles(unittest.TestCase):
-    # define multiple sets of tests as functions with names that begin
+    def test_equilateral(self):
+        self.assertEqual(classifyTriangle(3, 3, 3), 'Equilateral')
 
-    def testRightTriangleA(self): 
-        self.assertEqual(classifyTriangle(3,4,5),'Right','3,4,5 is a Right triangle')
+    def test_isosceles(self):
+        self.assertEqual(classifyTriangle(5, 5, 8), 'Isosceles')
 
-    def testRightTriangleB(self): 
-        self.assertEqual(classifyTriangle(5,3,4),'Right','5,3,4 is a Right triangle')
-        
-    def testEquilateralTriangles(self): 
-        self.assertEqual(classifyTriangle(1,1,1),'Equilateral','1,1,1 should be equilateral')
+    def test_scalene(self):
+        self.assertEqual(classifyTriangle(4, 5, 6), 'Scalene')
+
+    def test_right_triangle(self):
+        self.assertEqual(classifyTriangle(3, 4, 5), 'Right Scalene')
+
+    def test_invalid(self):
+        self.assertEqual(classifyTriangle(-1, 2, 2), 'Invalid Input')
+        self.assertEqual(classifyTriangle(0, 0, 0), 'Invalid Input')
+        self.assertEqual(classifyTriangle(1, 1, 2), 'Not a Triangle')
 
 if __name__ == '__main__':
-    print('Running unit tests')
     unittest.main()
 
