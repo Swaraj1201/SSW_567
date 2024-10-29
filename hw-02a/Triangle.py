@@ -1,27 +1,31 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jan 14 13:44:00 2016
-Updated Jan 21, 2018
-
-The primary goal of this file is to demonstrate a simple python program to classify triangles
-
-@author: jrr
-@author: rk
+This module provides a function to classify triangles based on the lengths of their sides.
 """
 
-def classifyTriangle(a, b, c):
+def classify_triangle(side_a, side_b, side_c):
+    """
+    Classifies a triangle based on the lengths of its sides.
+
+    :param side_a: Length of side A
+    :param side_b: Length of side B
+    :param side_c: Length of side C
+    :return: Type of triangle as a string
+    """
     # Check for invalid input
-    if a <= 0 or b <= 0 or c <= 0:
+    if side_a <= 0 or side_b <= 0 or side_c <= 0:
         return 'Invalid Input'
     # Check for triangle inequality
-    if (a + b <= c) or (a + c <= b) or (b + c <= a):
+    if (side_a + side_b <= side_c) or (side_a + side_c <= side_b) or (side_b + side_c <= side_a):
         return 'Not a Triangle'
     # Classify triangle
-    if a == b == c:
+    if side_a == side_b == side_c:
         return 'Equilateral'
-    elif a == b or b == c or a == c:
+    if side_a == side_b or side_b == side_c or side_a == side_c:
         return 'Isosceles'
-    elif (a**2 + b**2 == c**2) or (b**2 + c**2 == a**2) or (c**2 + a**2 == b**2):
+    if (side_a**2 + side_b**2 == side_c**2) or \
+       (side_b**2 + side_c**2 == side_a**2) or \
+       (side_c**2 + side_a**2 == side_b**2):
         return 'Right Scalene'
-    else:
-        return 'Scalene'
+    return 'Scalene'
+
